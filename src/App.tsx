@@ -15,7 +15,9 @@ function App() {
         } else if (route.layout === null) {
           Layout = EmptyLayout;
         }
-        const Page = route.component;
+        const Page = route.element;
+        const { child } = route;
+
         return (
           <Route
             path={route.path}
@@ -25,7 +27,19 @@ function App() {
               </Layout>
             }
             key={index}
-          />
+          >
+            {child &&
+              child.map((child) => {
+                const El = child.element;
+                return (
+                  <Route
+                    key={child.path}
+                    path={child.path}
+                    element={<El />}
+                  />
+                );
+              })}
+          </Route>
         );
       })}
     </Routes>

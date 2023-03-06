@@ -28,7 +28,14 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({
 }: CategoryListProps) => {
   // if (!itemList) return null;
   return (
-    <Box component="section">
+    <Box
+      component="section"
+      py={1.5}
+      px={2}
+      mt={2}
+      bgcolor={'white'}
+      borderRadius={2}
+    >
       <Stack
         direction="row"
         justifyContent="space-between"

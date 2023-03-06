@@ -1,22 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Box, Stack } from '@mui/material';
+import { Box, Container, Stack } from '@mui/material';
 
-export interface HeaderProps {}
+import { memo } from 'react';
+import Logo from './components/Logo';
+import Search from './components/Search';
+import UserActions from './components/UserAction';
 
-export default function Header(props: HeaderProps) {
+function Header() {
   return (
-    <Box component="header">
-      <Stack
-        direction="row"
-        sx={{ justifyContent: 'space-between' }}
-      >
-        <Box>
-          <Link to="/">GO home</Link>
-        </Box>
-        <Box sx={{ flexGrow: 1 }}>Search actions</Box>
-        <Box>User Actions</Box>
-      </Stack>
+    <Box
+      sx={{ py: 2 }}
+      component="header"
+      bgcolor="white"
+    >
+      <Container>
+        <Stack
+          direction="row"
+          sx={{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Logo />
+          {/* Search */}
+          <Search />
+
+          {/* User actions */}
+          <UserActions />
+        </Stack>
+      </Container>
     </Box>
   );
 }
+export default memo(Header);

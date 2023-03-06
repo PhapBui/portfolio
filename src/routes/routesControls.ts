@@ -1,24 +1,44 @@
 import { Counter } from 'features/counter';
 import { RoutesConfig } from 'models';
 import { pathConfig } from 'config';
-import { HomePage, ProductPage, AboutPage, CartPage, CheckoutPage, NotFoundPage } from 'pages';
-import { EmptyLayout } from 'components/layouts/EmptyLayout/Empty';
-import NoSidebarLayout from 'components/layouts/NoSidebarLayout/NoSidebarLayout';
+import {
+  HomePage,
+  ProductPage,
+  AboutPage,
+  CartPage,
+  CheckoutPage,
+  NotFoundPage,
+  AdminPage,
+  SignInPage,
+} from 'pages';
+import { NoSideBarLayout, EmptyLayout, AdminLayout } from 'components/layouts';
+import DashBoard from 'features/DashBoard';
+import Product from 'features/Products';
 
 const publicRoutes: RoutesConfig[] = [
-  { path: pathConfig.root, component: HomePage },
-  { path: pathConfig.counter, component: Counter },
-  { path: pathConfig.products, component: ProductPage, layout: EmptyLayout },
-  { path: pathConfig.about, component: AboutPage, layout: NoSidebarLayout },
-  { path: pathConfig.cart, component: CartPage, layout: NoSidebarLayout },
-  { path: pathConfig.checkout, component: CheckoutPage, layout: NoSidebarLayout },
-  { path: pathConfig.notFound, component: NotFoundPage, layout: EmptyLayout },
+  { path: pathConfig.root, element: HomePage },
+  { path: pathConfig.counter, element: Counter },
+  { path: pathConfig.products, element: ProductPage, layout: EmptyLayout },
+  { path: pathConfig.about, element: AboutPage, layout: NoSideBarLayout },
+  { path: pathConfig.cart, element: CartPage, layout: NoSideBarLayout },
+  {
+    path: pathConfig.admin,
+    element: AdminPage,
+    layout: AdminLayout,
+    child: [
+      { path: 'product', element: Product },
+      { path: 'dashboard', element: DashBoard },
+    ],
+  },
+  { path: pathConfig.checkout, element: CheckoutPage, layout: NoSideBarLayout },
+  { path: pathConfig.signin, element: SignInPage, layout: NoSideBarLayout },
+  { path: pathConfig.notFound, element: NotFoundPage, layout: EmptyLayout },
 ];
 
 const privateRoutes: RoutesConfig[] = [
   {
     path: '',
-    component: HomePage,
+    element: HomePage,
   },
 ];
 

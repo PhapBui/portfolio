@@ -5,3 +5,4 @@ export { default as SignInPage } from 'pages/SignIn';
 export { default as NotFoundPage } from 'pages/NotFound';
 export { default as CheckoutPage } from 'pages/Checkout';
 export { default as AboutPage } from 'pages/About';
+export { default as AdminPage } from 'pages/Admin';

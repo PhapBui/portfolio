@@ -3,9 +3,11 @@ import { Paths } from 'models';
 export const pathConfig: Paths = {
   root: '/',
   counter: '/counter',
-  products: '/products',
+  products: '/products/*',
   about: '/about',
   checkout: '/checkout',
   cart: '/cart',
+  signin: '/signin',
+  admin: '/admin/*',
   notFound: '*',
 };

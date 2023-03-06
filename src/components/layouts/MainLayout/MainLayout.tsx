@@ -8,12 +8,18 @@ import Sidebar from 'components/common/Sidebar/Sidebar';
 
 export interface MainLayoutProps {}
 
-export function MainLayout({ children }: LayoutProps) {
+export const MainLayout = React.memo(function MainLayout({ children }: LayoutProps) {
   return (
-    <div className={'wrapper'}>
-      <Container fixed>
-        <Header />
-        <Stack direction="row">
+    <Box bgcolor={'#efefef'}>
+      <Header />
+      <Container
+        fixed
+        sx={{ mt: 2 }}
+      >
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+        >
           <Box
             component="aside"
             sx={{ width: { lg: 230, xs: 0 } }}
@@ -22,13 +28,13 @@ export function MainLayout({ children }: LayoutProps) {
           </Box>
           <Box
             component="main"
-            sx={{ width: { lg: 'calc(100% - 230px)', xs: '100%' } }}
+            sx={{ width: { lg: 'calc(100% - 254px)', xs: '100%' } }}
           >
             {children}
           </Box>
         </Stack>
         <Footer />
       </Container>
-    </div>
+    </Box>
   );
-}
+});
