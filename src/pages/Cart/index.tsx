@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, Typography } from '@mui/material';
+import { Box, Paper, Stack } from '@mui/material';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Bill, ItemList } from 'components/cart';
 import BillAction from 'components/cart/Bill/BillAction';
@@ -18,13 +18,6 @@ function CartPage(props: AboutPageProps) {
   return (
     <Box>
       <Stack sx={{ justifyContent: 'center' }}>
-        <Typography
-          component="h1"
-          variant="h3"
-          textAlign="center"
-        >
-          Cart Page
-        </Typography>
         {CartList && CartList.length > 0 ? (
           <Stack
             sx={{

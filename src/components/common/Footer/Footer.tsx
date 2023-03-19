@@ -49,7 +49,7 @@ const data = [
         name: 'Shop',
         id: 1,
         avatar: logo,
-        url: 'https://portfolio-flame-mu-47.vercel.app/',
+        url: 'https://portfolio-phapbui.vercel.app/',
       },
     ],
   },
@@ -99,7 +99,12 @@ function Footer(props: FooterProps) {
             </Box>
           ))}
         </Stack>
-        <Typography textAlign={'center'}>Copy Right © {new Date().getFullYear()}</Typography>
+        <Typography
+          textAlign={'center'}
+          variant="subtitle1"
+        >
+          Copy Right © {new Date().getFullYear()}
+        </Typography>
       </Container>
     </Box>
   );

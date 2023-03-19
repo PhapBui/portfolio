@@ -51,6 +51,7 @@ function App() {
                   const El = child.element;
                   return (
                     <Route
+                      index={child.index}
                       key={child.path}
                       path={child.path}
                       element={<El />}

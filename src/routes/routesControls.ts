@@ -1,23 +1,23 @@
-import { Counter } from 'features/counter';
-import { RoutesConfig } from 'models';
+import { AdminLayout, EmptyLayout, NoSideBarLayout } from 'components/layouts';
 import { pathConfig } from 'config';
-import {
-  HomePage,
-  ProductPage,
-  AboutPage,
-  CartPage,
-  CheckoutPage,
-  NotFoundPage,
-  AdminPage,
-  LoginPage,
-  CategoryPage,
-} from 'pages';
-import { NoSideBarLayout, EmptyLayout, AdminLayout } from 'components/layouts';
+import Category from 'features/category';
+import { Counter } from 'features/counter';
 import DashBoard from 'features/dashboard';
 import Product from 'features/product';
-import Category from 'features/category';
 import AddEditPage from 'features/product/pages/AddEdit';
 import SingleProduct from 'features/product/pages/SingleProduct';
+import { RoutesConfig } from 'models';
+import {
+  AboutPage,
+  AdminPage,
+  CartPage,
+  CategoryPage,
+  CheckoutPage,
+  HomePage,
+  LoginPage,
+  NotFoundPage,
+  ProductPage,
+} from 'pages';
 
 const publicRoutes: RoutesConfig[] = [
   { path: pathConfig.root, element: HomePage, layout: NoSideBarLayout },
@@ -46,11 +46,12 @@ const publicRoutes: RoutesConfig[] = [
   { path: pathConfig.cart, element: CartPage, layout: NoSideBarLayout },
   {
     path: pathConfig.admin,
+
     element: AdminPage,
     layout: AdminLayout,
     child: [
       { path: 'product', element: Product },
-      { path: 'dashboard', element: DashBoard },
+      { path: 'dashboard', element: DashBoard, index: true },
       { path: 'categories', element: Category },
     ],
   },

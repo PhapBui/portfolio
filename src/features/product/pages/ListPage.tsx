@@ -53,9 +53,16 @@ function ListPage() {
       <Stack
         direction={'row'}
         justifyContent="space-between"
+        bgcolor="white"
+        p={1}
+        mb={0.5}
+        borderRadius={0.5}
+        position="sticky"
+        top={0}
+        zIndex={10}
       >
         <Typography variant="h4">Products</Typography>
-        <Button>
+        <Button variant="outlined">
           <Link to={'/product/add'}>Add new Product</Link>
         </Button>
       </Stack>

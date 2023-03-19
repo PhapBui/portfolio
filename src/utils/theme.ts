@@ -111,6 +111,13 @@ export let theme = createTheme({
         },
       ],
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          padding: 8,
+        },
+      },
+    },
   },
   breakpoints: {
     values: {

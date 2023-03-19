@@ -13,7 +13,7 @@ const DashBoard: React.FunctionComponent<DashBoardProps> = (props) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt="avatar"
         height="140"
         image={currentuser.photoUrl.replace('s96', 's500')}
       />
@@ -29,8 +29,7 @@ const DashBoard: React.FunctionComponent<DashBoardProps> = (props) => {
           variant="body2"
           color="text.secondary"
         >
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-          across all continents except Antarctica
+          React Developer
         </Typography>
       </CardContent>
       <CardActions>

@@ -54,8 +54,14 @@ function ProductTable({ productList, onEdit, onRemove }: ProductTableProps) {
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table aria-label="simple table">
+      <TableContainer
+        component={Paper}
+        sx={{ maxHeight: 520 }}
+      >
+        <Table
+          stickyHeader
+          aria-label="sticky table"
+        >
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
@@ -64,7 +70,7 @@ function ProductTable({ productList, onEdit, onRemove }: ProductTableProps) {
               <TableCell align="center">Price</TableCell>
               <TableCell
                 align="center"
-                sx={{ display: { md: 'none', xs: 'none' } }}
+                sx={{ display: { lg: 'table-cell', xs: 'none' } }}
               >
                 Slug
               </TableCell>
@@ -87,7 +93,7 @@ function ProductTable({ productList, onEdit, onRemove }: ProductTableProps) {
                 <TableCell align="center">{currency(+product.price)}</TableCell>
                 <TableCell
                   align="center"
-                  sx={{ display: { md: 'none', xs: 'none' } }}
+                  sx={{ display: { lg: 'table-cell', xs: 'none' } }}
                 >
                   {product.slug}
                 </TableCell>

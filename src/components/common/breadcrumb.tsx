@@ -1,34 +1,40 @@
-import * as React from 'react';
-import { Box, Typography, Breadcrumbs, Link } from '@mui/material';
+import { memo } from 'react';
+import { Box, Breadcrumbs } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
 
-function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
-
-export default function BasicBreadcrumbs() {
+function BasicBreadcrumbs() {
+  const location = useLocation();
+  const path = location.pathname;
+  const pathArray = path.split('/').filter((part) => part?.trim() !== '');
+  if (pathArray.length === 0) return null;
   return (
     <Box
       role="presentation"
-      onClick={handleClick}
+      mb={2}
     >
       <Breadcrumbs aria-label="breadcrumb">
         <Link
-          underline="hover"
           color="inherit"
-          href="/"
+          to="/"
         >
-          MUI
+          Home
         </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/material-ui/getting-started/installation/"
-        >
-          Core
-        </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
+        {pathArray &&
+          pathArray.length > 0 &&
+          pathArray.map((path, idx) => {
+            const prePath = pathArray.slice(0, idx);
+            return (
+              <Link
+                color="inherit"
+                to={prePath?.length > 0 ? `/${prePath?.join('/')}/${path}` : `/${path}`}
+                key={idx}
+              >
+                {path}
+              </Link>
+            );
+          })}
       </Breadcrumbs>
     </Box>
   );
 }
+export default memo(BasicBreadcrumbs);

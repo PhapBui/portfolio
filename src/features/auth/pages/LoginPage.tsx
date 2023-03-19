@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Paper } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Navigate } from 'react-router-dom';
 import { authAction } from '../authSlice';
@@ -18,31 +18,43 @@ export default function LoginPage() {
     );
   };
   return (
-    <div>
+    <Box
+      sx={{
+        textAlign: 'center',
+      }}
+    >
       {isLoggedIn && (
         <Navigate
           replace
-          to="/admin/dashboard"
+          to="/admin/product"
         />
       )}
-      <Paper elevation={1}>
-        <Box mt={4}>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={handleLoginClick}
-          >
-            {isLogging && (
-              <CircularProgress
-                size={20}
-                color="secondary"
-              />
-            )}
-            Fake Login
-          </Button>
-        </Box>
-      </Paper>
-    </div>
+
+      <Button
+        fullWidth
+        variant="contained"
+        color="primary"
+        sx={{
+          direction: 'ltr',
+          fontWeight: '500',
+          height: 'auto',
+          lineHeight: 'normal',
+          maxWidth: '220px',
+          minHeight: '40px',
+          padding: '8px 16px',
+          textAlign: 'left',
+          width: '100%',
+        }}
+        onClick={handleLoginClick}
+      >
+        {isLogging && (
+          <CircularProgress
+            size={20}
+            color="secondary"
+          />
+        )}
+        Fake Login
+      </Button>
+    </Box>
   );
 }

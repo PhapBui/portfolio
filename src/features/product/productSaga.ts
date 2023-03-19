@@ -7,8 +7,6 @@ import { productActions } from './productSlice';
 
 function* fetchAllProduct() {
   try {
-    console.log('helo');
-
     const res: ProductDetails[] = yield call(productApi.getAll);
 
     yield put(productActions.fetchAllProductSuccess(res));

@@ -1,11 +1,16 @@
 import React, { memo } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Routes, Route } from 'react-router-dom';
 
 export interface ProductPageProps {}
 function ProductPage(props: ProductPageProps) {
   return (
     <div>
-      ProductPage
+      <Routes>
+        <Route
+          index
+          element={<h1>Admin Page</h1>}
+        />
+      </Routes>
       <Outlet />
     </div>
   );
