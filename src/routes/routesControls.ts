@@ -13,7 +13,7 @@ import {
   CategoryPage,
 } from 'pages';
 import { NoSideBarLayout, EmptyLayout, AdminLayout } from 'components/layouts';
-import DashBoard from 'features/dashBoard';
+import DashBoard from 'features/dashboard';
 import Product from 'features/product';
 import Category from 'features/category';
 import AddEditPage from 'features/product/pages/AddEdit';
