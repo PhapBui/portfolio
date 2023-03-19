@@ -8,6 +8,7 @@ export interface ProductState {
   list: ProductDetails[];
   searchList: ProductDetails[];
   hotDealList: ProductDetails[];
+  galleyList: ProductDetails[];
   product: ProductDetails;
   filter: ListParams;
   pagination: PaginationParams;
@@ -17,8 +18,11 @@ export interface ProductState {
 const initialState: ProductState = {
   loading: false,
   list: [],
+  galleyList: [],
+
   searchList: [],
   hotDealList: [],
+
   product: {
     id: 0,
     price: 0,
@@ -56,13 +60,22 @@ const productSlice = createSlice({
       state.pagination.count = Math.ceil(action.payload.length / 10);
     },
 
-    fetchGroupProduct(state, action: PayloadAction<ListParams>) {
+    fetchHotDeal(state, action: PayloadAction<ListParams>) {
       state.loading = true;
     },
-    fetchGroupProductSuccess(state, action: PayloadAction<ProductDetails[]>) {
+    fetchHotDealSuccess(state, action: PayloadAction<ProductDetails[]>) {
       state.loading = false;
 
       state.hotDealList = action.payload;
+    },
+
+    fetchGalley(state, action: PayloadAction<ListParams>) {
+      state.loading = true;
+    },
+    fetchGalleySuccess(state, action: PayloadAction<ProductDetails[]>) {
+      state.loading = false;
+
+      state.galleyList = action.payload;
     },
 
     fetchProductListFailed(state) {
@@ -100,6 +113,8 @@ export const productFilter = (state: RootState) => state.products.filter;
 
 export const selectProductList = (state: RootState) => state.products.list;
 export const selectHotdeal = (state: RootState) => state.products.hotDealList;
+export const selectGalleyList = (state: RootState) => state.products.galleyList;
+
 export const selectProduct = (state: RootState) => state.products.product;
 export const searchList = (state: RootState) => state.products.searchList;
 

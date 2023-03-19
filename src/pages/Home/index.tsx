@@ -14,7 +14,7 @@ function HomePage(props: HomePageProps) {
 
   useEffect(() => {
     const params: ListParams = { page: 1, limit: 10, sortBy: 'discount', order: 'desc' };
-    dispath(productActions.fetchGroupProduct(params));
+    dispath(productActions.fetchHotDeal(params));
   }, [dispath]);
 
   return (

@@ -8,6 +8,7 @@ interface DashBoardProps {}
 
 const DashBoard: React.FunctionComponent<DashBoardProps> = (props) => {
   const currentuser = useAppSelector(selectCurrentUser);
+  if (!currentuser) return null;
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia

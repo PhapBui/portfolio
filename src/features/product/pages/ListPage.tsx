@@ -22,7 +22,7 @@ function ListPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(productActions.fetchGroupProduct(filter));
+    dispatch(productActions.fetchHotDeal(filter));
     dispatch(productActions.fetchAllProduct());
   }, [dispatch, filter]);
 

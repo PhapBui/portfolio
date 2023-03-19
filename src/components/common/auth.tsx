@@ -10,8 +10,8 @@ function Auth({ children }: LayoutProps) {
   const currentuser = useAppSelector(selectCurrentUser);
 
   useEffect(() => {
-    if (!currentuser.name) navaigate('/login');
-  }, [currentuser.name, navaigate]);
+    if (!currentuser?.name) navaigate('/login');
+  }, [currentuser?.name, navaigate]);
 
   if (!currentuser) return <div>loading</div>;
   return <div>{children}</div>;

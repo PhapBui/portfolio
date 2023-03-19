@@ -7,6 +7,8 @@ import { productActions } from './productSlice';
 
 function* fetchAllProduct() {
   try {
+    console.log('helo');
+
     const res: ProductDetails[] = yield call(productApi.getAll);
 
     yield put(productActions.fetchAllProductSuccess(res));
@@ -15,17 +17,26 @@ function* fetchAllProduct() {
     yield put(productActions.fetchProductListFailed());
   }
 }
-function* fetchGroupProduct(action: PayloadAction<ListParams>) {
+function* fetchHotDeal(action: PayloadAction<ListParams>) {
   try {
     const res: ProductDetails[] = yield call(productApi.getGroupProduct, action.payload);
 
-    yield put(productActions.fetchGroupProductSuccess(res));
+    yield put(productActions.fetchHotDealSuccess(res));
   } catch (error) {
     console.log('Failed to fetchStudentList: ', error);
     yield put(productActions.fetchProductListFailed());
   }
 }
+function* fetchGalley(action: PayloadAction<ListParams>) {
+  try {
+    const res: ProductDetails[] = yield call(productApi.getGroupProduct, action.payload);
 
+    yield put(productActions.fetchGalleySuccess(res));
+  } catch (error) {
+    console.log('Failed to fetchStudentList: ', error);
+    yield put(productActions.fetchProductListFailed());
+  }
+}
 function* fetchSingleProduct(action: PayloadAction<string | number>) {
   try {
     const res: ProductDetails = yield call(productApi.getById, action.payload);
@@ -49,7 +60,8 @@ function* searchProduct(action: PayloadAction<string>) {
 
 export default function* productSaga() {
   yield takeLatest(productActions.fetchAllProduct, fetchAllProduct);
-  yield takeLatest(productActions.fetchGroupProduct, fetchGroupProduct);
+  yield takeLatest(productActions.fetchHotDeal, fetchHotDeal);
+  yield takeLatest(productActions.fetchGalley, fetchGalley);
   yield takeLatest(productActions.fetchSingleProduct, fetchSingleProduct);
   yield debounce(500, productActions.searchProductByName, searchProduct);
 }
