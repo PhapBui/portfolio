@@ -1,6 +1,6 @@
-import { Container, Stack } from '@mui/material';
+import { Container, Stack, Box } from '@mui/material';
 import Footer from 'components/common/Footer/Footer';
-import Header from 'components/common/Header/Header';
+import Header from 'components/common/Header';
 
 import { LayoutProps } from 'models/common';
 import * as React from 'react';
@@ -18,12 +18,9 @@ export const NoSideBarLayout = React.memo(function NoSideBarLayout({ children }:
         fixed
         sx={{ mt: 2, flexGrow: 1 }}
       >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-        >
+        <Box>
           <Stack component="main">{children}</Stack>
-        </Stack>
+        </Box>
       </Container>
       <Footer />
     </Stack>

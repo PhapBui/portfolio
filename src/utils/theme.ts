@@ -6,7 +6,7 @@ import { responsiveFontSizes } from '@mui/material';
 export let theme = createTheme({
   palette: {
     primary: {
-      main: '#FF6464',
+      main: '#0a68ff',
     },
     secondary: {
       light: '#EDF7FA',
@@ -21,9 +21,22 @@ export let theme = createTheme({
       styleOverrides: {
         html: {
           scrollBehavior: 'smooth',
+          '& *::-webkit-scrollbar': {
+            borderRadius: 0,
+            width: '8px',
+          },
+          '& *::-webkit-scrollbar-thumb': {
+            borderRadius: '4px',
+            backgroundColor: 'rgba(22, 24, 35, 0.16)',
+          },
+          '& *::-webkit-scrollbar-track': {
+            borderRadius: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+          },
         },
         a: {
           textDecoration: 'none',
+          color: 'inherit',
         },
       },
     },

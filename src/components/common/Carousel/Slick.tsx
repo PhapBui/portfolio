@@ -29,8 +29,24 @@ const SliderWrapper = styled(Slider)({
   '&>.slick-dots': {
     bottom: 0,
   },
+  '& .slick-slide': {
+    padding: '4px',
+  },
   '& .slick-slide img': {
     width: '100%',
+  },
+  '& .slick-dots li': {
+    transition: 'all linear 0.5s',
+    '& button:before': {
+      width: '100%',
+      height: '4px',
+      content: '""',
+      backgroundColor: '#282828',
+      transition: 'all linear 0.5s',
+    },
+    '&.slick-active': {
+      width: '40px',
+    },
   },
 });
 

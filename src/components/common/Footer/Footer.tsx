@@ -1,7 +1,7 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 
-import { logo } from 'assets/images';
+import { logo, gitIcon, linkedinIcon, mailIcon, phoneIcon } from 'assets/images';
 import FooterItem from './Item';
 
 export interface FooterProps {}
@@ -11,16 +11,28 @@ const data = [
     title: 'Contact',
     items: [
       {
-        name: 'git',
+        name: 'Git',
         id: 1,
-        avatar: logo,
-        url: '',
+        avatar: gitIcon,
+        url: 'https://github.com/PhapBui',
       },
       {
-        name: 'fb',
+        name: 'Email',
         id: 2,
-        avatar: logo,
-        url: '',
+        avatar: mailIcon,
+        url: 'mailto:bvphap.tk@gmail.com',
+      },
+      {
+        name: 'Phone Number',
+        id: 3,
+        avatar: phoneIcon,
+        url: 'tel:+84986742320',
+      },
+      {
+        name: 'Linkedin',
+        id: 4,
+        avatar: linkedinIcon,
+        url: 'https://www.linkedin.com/in/b%C3%B9i-ph%C3%A1p-8a38a8149/?original_referer=',
       },
     ],
   },
@@ -28,16 +40,16 @@ const data = [
     title: 'Project',
     items: [
       {
+        name: 'Portfolio',
+        id: 1,
+        avatar: logo,
+        url: 'https://www.linkedin.com/in/b%C3%B9i-ph%C3%A1p-8a38a8149/?original_referer=',
+      },
+      {
         name: 'Shop',
         id: 1,
         avatar: logo,
-        url: '',
-      },
-      {
-        name: 'git',
-        id: 1,
-        avatar: logo,
-        url: '',
+        url: 'https://portfolio-flame-mu-47.vercel.app/',
       },
     ],
   },

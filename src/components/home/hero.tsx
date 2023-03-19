@@ -43,7 +43,7 @@ function HeroBanner(props: HeroBannerProps) {
           sx={{
             width: { lg: '25%', md: '0%' },
             height: { xl: 280, lg: 240 },
-            display: { lg: 'block', md: 'none' },
+            display: { lg: 'block', md: 'none', xs: 'none' },
           }}
         >
           <Box sx={{ width: '100%', height: '100%' }}>

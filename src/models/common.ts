@@ -6,6 +6,7 @@ export interface LayoutProps {
 export interface PaginationParams {
   page: number;
   limit: number;
+  count: number;
   [key: string]: any;
 }
 
@@ -17,7 +18,7 @@ export interface ListResponse<T> {
 export interface ListParams {
   page?: number;
   limit?: number;
-  sortby?: string;
+  sortBy?: string;
   order?: 'asc' | 'desc';
   [key: string]: any;
 }

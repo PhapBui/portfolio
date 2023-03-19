@@ -1,48 +1,72 @@
-import React, { memo } from 'react';
-import { Stack, Box } from '@mui/material';
+import React, { memo, useEffect } from 'react';
+import { Stack, Box, Typography } from '@mui/material';
 import ProductCard from 'components/product/productCard';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { productActions, productFilter, selectProductList } from 'features/product/productSlice';
 
 interface ProductGalleyProps {}
 
 const ProductGalley: React.FunctionComponent<ProductGalleyProps> = (props) => {
-  const a = [];
-  for (let i = 0; i < 42; ++i) {
-    a.push(i);
-  }
+  const dispatch = useAppDispatch();
+  const ProductList = useAppSelector(selectProductList);
+  const filter = useAppSelector(productFilter);
+  useEffect(() => {
+    const newFilter = { ...filter, limit: 24 };
+    dispatch(productActions.fetchGroupProduct(newFilter));
+  }, [dispatch, filter]);
+
   return (
     <Box
       component="section"
       mt={2}
     >
+      <Box>
+        <Typography
+          component="h2"
+          variant="h5"
+          px={2}
+          sx={{
+            padding: '12px 16px',
+            backgroundColor: 'white',
+            lineHeight: '150%',
+            textTransform: 'unset',
+            marginBottom: '0px',
+            marginTop: '16px',
+            borderRadius: '8px 8px 0px 0px',
+          }}
+        >
+          Maybe You Like
+        </Typography>
+      </Box>
       <Stack
         sx={{
-          justifyContent: 'space-between',
           flexFlow: 'row wrap',
-          gap: 1,
+          mx: -0.5,
         }}
       >
-        {a.map((a) => (
+        {ProductList.map((product) => (
           <Box
-            key={a}
+            key={product.id}
             sx={{
               width: {
-                lg: 'calc(100% / 6 - 8px)',
-                md: 'calc(100% / 4 - 8px)',
-                xs: 'calc(100% / 2 - 8px)',
+                lg: 'calc(100% / 6 )',
+                md: 'calc(100% / 4 )',
+                xs: 'calc(100% / 2 )',
               },
               maxWidth: {
-                lg: 'calc(100% / 6 - 8px)',
-                md: 'calc(100% / 4 - 8px)',
-                xs: 'calc(100% / 2 - 8px)',
+                lg: 'calc(100% / 6 )',
+                md: 'calc(100% / 4 )',
+                xs: 'calc(100% / 2 )',
               },
               flexBasis: {
-                lg: 'calc(100% / 6 - 8px)',
-                md: 'calc(100% / 4 - 8px)',
-                xs: 'calc(100% / 2 - 8px)',
+                lg: 'calc(100% / 6 )',
+                md: 'calc(100% / 4 )',
+                xs: 'calc(100% / 2 )',
               },
+              p: 0.5,
             }}
           >
-            <ProductCard />
+            <ProductCard product={product} />
           </Box>
         ))}
       </Stack>

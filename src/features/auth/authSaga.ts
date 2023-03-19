@@ -11,6 +11,8 @@ function* handleLogin(payload: LoginPayLoad) {
       authAction.loginSuccess({
         id: 1,
         name: 'Phap',
+        email: 'bvphap.tk@gmail.com',
+        photoUrl: '',
       })
     );
     yield put(push('/admin/dashboard'));
@@ -22,7 +24,7 @@ function* handleLogout() {
   yield delay(500);
   localStorage.removeItem('access_token');
   console.log('Handle logout: ');
-  yield put(push('/signin'));
+  yield put(push('/login'));
 }
 function* watchLoginFlow() {
   while (true) {

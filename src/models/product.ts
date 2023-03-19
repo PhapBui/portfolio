@@ -1,20 +1,23 @@
 export interface CategoryDetails {
-  id: number | string;
-  name: string;
-  url: string;
-  thumbnailUrl: string;
-  description: string;
+  categoryId?: number | string;
+  name?: string;
+  url?: string;
+  productQty: number;
+  thumbnailUrl?: string;
+  description?: string;
 }
 export interface ProductDetails {
   id: number | string;
   name: string;
-  url: string;
-
   thumbnailUrl: string;
   price: number;
-  quanlity: number;
-  categoryId: string | number;
-  description: string | 'Chua co mo ta';
-  createdAt: string | number;
-  updatedAt: string | number;
+  quantity: number;
+
+  discount: number | 0;
+  currentPrice: number;
+  slug?: string;
+  category?: CategoryDetails;
+  description?: string | 'Chua co mo ta';
+  createdAt?: string | number;
+  updatedAt?: string | number;
 }

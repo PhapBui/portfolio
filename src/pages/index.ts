@@ -1,8 +1,9 @@
 export { default as HomePage } from 'pages/Home';
-export { default as ProductPage } from 'pages/Products';
+export { default as ProductPage } from 'pages/Product';
 export { default as CartPage } from 'pages/Cart';
-export { default as SignInPage } from 'pages/SignIn';
+export { default as LoginPage } from 'pages/Login';
 export { default as NotFoundPage } from 'pages/NotFound';
 export { default as CheckoutPage } from 'pages/Checkout';
 export { default as AboutPage } from 'pages/About';
 export { default as AdminPage } from 'pages/Admin';
+export { default as CategoryPage } from 'pages/Category';

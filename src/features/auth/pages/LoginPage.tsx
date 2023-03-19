@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Paper, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Paper } from '@mui/material';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Navigate } from 'react-router-dom';
 import { authAction } from '../authSlice';
@@ -26,12 +26,6 @@ export default function LoginPage() {
         />
       )}
       <Paper elevation={1}>
-        <Typography
-          variant="h5"
-          component="h1"
-        >
-          Student Management
-        </Typography>
         <Box mt={4}>
           <Button
             fullWidth
@@ -44,7 +38,7 @@ export default function LoginPage() {
                 size={20}
                 color="secondary"
               />
-            )}{' '}
+            )}
             Fake Login
           </Button>
         </Box>

@@ -1,26 +1,39 @@
 import { Box, Stack, Container } from '@mui/material';
 import Footer from 'components/common/Footer/Footer';
-import Header from 'components/common/Header/Header';
-import { Sidebar } from 'components/profile/sidebar';
+import Header from 'components/common/Header';
+import Sidebar from 'components/admin/sidebar';
+import Auth from 'components/common/auth';
+import BasicBreadcrumbs from 'components/common/breadcrumb';
 export interface AdminLayoutProps {
   children: any;
 }
 
 export function AdminLayout({ children }: AdminLayoutProps) {
   return (
-    <Box>
+    <Auth>
       <Box>
-        <Header />
+        <Stack minHeight="100vh">
+          <Box>
+            <Header />
+          </Box>
+
+          <Box flexGrow={1}>
+            <Container fixed>
+              <BasicBreadcrumbs />
+              <Stack direction="row">
+                <Box sx={{ display: { md: 'none', xs: 'none' } }}>
+                  <Sidebar />
+                </Box>
+
+                <Box flexGrow={1}>{children}</Box>
+              </Stack>
+            </Container>
+          </Box>
+          <Box>
+            <Footer />
+          </Box>
+        </Stack>
       </Box>
-      <Box>
-        <Container fixed>
-          <Stack direction="row">
-            <Sidebar />
-            <Box flexGrow={1}>{children}</Box>
-          </Stack>
-        </Container>
-      </Box>
-      <Footer />
-    </Box>
+    </Auth>
   );
 }
