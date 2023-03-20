@@ -12,32 +12,6 @@ interface CategoryListProps {
   readmoreUrl?: string;
 }
 
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 6,
-  slidesToScroll: 6,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-      },
-    },
-  ],
-};
-
 const CategoryList: React.FunctionComponent<CategoryListProps> = ({
   title,
   itemList,
@@ -45,6 +19,32 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({
   readmoreUrl,
 }: CategoryListProps) => {
   if (!itemList) return null;
+  const settings = {
+    dots: true,
+    infinite: itemList.length > 6,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: itemList.length > 4,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          infinite: itemList.length > 2,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
   return (
     <Box
       component="section"

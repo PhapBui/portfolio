@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { push } from 'connected-react-router';
 import { call, delay, fork, put, take } from 'redux-saga/effects';
 import { authAction, LoginPayLoad } from './authSlice';
-
+import { toast } from 'react-toastify';
 function* handleLogin(payload: LoginPayLoad) {
   try {
     yield delay(600);
@@ -15,15 +15,16 @@ function* handleLogin(payload: LoginPayLoad) {
         photoUrl: '',
       })
     );
+    toast.success('Login successfully!');
     yield put(push('/admin/dashboard'));
   } catch (error: any) {
+    toast.error('Failed to login!');
     yield put(authAction.loginFailed(error.message));
   }
 }
 function* handleLogout() {
   yield delay(500);
   localStorage.removeItem('access_token');
-  console.log('Handle logout: ');
   yield put(push('/login'));
 }
 function* watchLoginFlow() {

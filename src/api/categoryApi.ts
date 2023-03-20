@@ -19,8 +19,6 @@ const categoryApi = {
   },
 
   updateCategory(data: Partial<ProductDetails>): Promise<ProductDetails> {
-    console.log('update data: ', data);
-
     const url = `/categories/${data.id}`;
     return axiosClient.put(url, data);
   },

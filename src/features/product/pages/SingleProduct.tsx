@@ -43,8 +43,9 @@ const SingleProduct: React.FunctionComponent<SingleProductProps> = (props) => {
           }}
         >
           <Stack
-            direction="row"
-            spacing={2}
+            sx={{
+              flexDirection: { lg: 'row', xs: 'column' },
+            }}
           >
             <Box
               sx={{
@@ -54,7 +55,13 @@ const SingleProduct: React.FunctionComponent<SingleProductProps> = (props) => {
               <ProductThumbnail thumbnailUrl={product.thumbnailUrl} />
             </Box>
             <Divider
+              sx={{ mx: '16px', display: { lg: 'block', xs: 'none' } }}
               orientation="vertical"
+              flexItem
+            />
+            <Divider
+              sx={{ my: '16px', display: { lg: 'none', xs: 'block' } }}
+              orientation="horizontal"
               flexItem
             />
             <Box

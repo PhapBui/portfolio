@@ -28,7 +28,6 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      console.log('handleUpdateCart');
       state.loading = true;
     },
     addToCartSuccess(state, action: PayloadAction<ProductDetails>) {
@@ -66,6 +65,8 @@ export const cartSlice = createSlice({
       state.listItem.splice(action.payload, 1);
     },
     emptyCart: (state) => {
+      console.log('dispatch cartEmpty');
+
       state.listItem = [];
     },
   },

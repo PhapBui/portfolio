@@ -29,17 +29,14 @@ function FormCheckout({ onSubmit, initCustomer }: FormCheckoutProps) {
   }, [dispatch]);
 
   const schema = yup.object().shape({
-    customer_name: yup
-      .string()
-      .min(3, 'Must be a meaningful name')
-      .required('Please enter your name'),
-    email: yup.string().email('Must be a valid email').required('Please enter your email'),
-    phonenumber: yup
-      .string()
-      .matches(phoneRegExp, 'Phone number is not valid')
-      .min(3, 'Please')
-      .required('Please enter your phonenumber'),
-    address: yup.string().min(8, 'Must be a valid address').required('Please enter your address'),
+    // customer_name: yup.string().min(3, 'Please enter your name').required('Please enter your name'),
+    // email: yup.string().email('Must be a valid email').required('Please enter your email'),
+    // phonenumber: yup
+    //   .string()
+    //   .matches(phoneRegExp, 'Phone number is not valid')
+    //   .min(3, 'Please')
+    //   .required('Please enter your phonenumber'),
+    // address: yup.string().min(8, 'Must be a valid address').required('Please enter your address'),
   });
 
   const {
@@ -48,6 +45,7 @@ function FormCheckout({ onSubmit, initCustomer }: FormCheckoutProps) {
     formState: { isSubmitting },
     watch,
     resetField,
+    reset,
   } = useForm<CustomerInfo>({
     defaultValues: initCustomer,
     resolver: yupResolver(schema),
@@ -56,6 +54,7 @@ function FormCheckout({ onSubmit, initCustomer }: FormCheckoutProps) {
 
   async function handleLoginSubmit(payload: CustomerInfo) {
     await onSubmit?.(payload);
+    reset();
   }
 
   const { proviceId, districtId, ward } = watch();
@@ -78,25 +77,10 @@ function FormCheckout({ onSubmit, initCustomer }: FormCheckoutProps) {
     if (ward) dispatch(directoryActions.getWardById(ward));
   }, [dispatch, ward, resetField]);
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(handleLoginSubmit)}
-    >
-      <InputField
-        name="customer_name"
-        label="Your Name"
-        control={control}
-      />
-      <InputField
-        name="email"
-        label="Your Email"
-        control={control}
-      />
-      <InputField
-        name="phonenumber"
-        label="Your Phonenumber"
-        control={control}
-      />
+    <Box component="form" onSubmit={handleSubmit(handleLoginSubmit)}>
+      <InputField name="customer_name" label="Your Name" control={control} />
+      <InputField name="email" label="Your Email" control={control} />
+      <InputField name="phonenumber" label="Your Phonenumber" control={control} />
       <Stack direction="row">
         <SelectField
           name="proviceId"
@@ -118,18 +102,9 @@ function FormCheckout({ onSubmit, initCustomer }: FormCheckoutProps) {
           control={control}
           options={[{ label: 'Ward', value: 0 }, ...listWard]}
         />
-        <InputField
-          name="address"
-          label="Your Address"
-          control={control}
-        />
+        <InputField name="address" label="Your Address" control={control} />
       </Stack>
-      <TextAreaField
-        rows={4}
-        name="note"
-        label="Note"
-        control={control}
-      />
+      <TextAreaField rows={4} name="note" label="Note" control={control} />
       <Button
         startIcon={isSubmitting && <CircularProgress />}
         disabled={isSubmitting}

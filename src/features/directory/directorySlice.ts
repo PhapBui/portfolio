@@ -44,9 +44,6 @@ const directorySlice = createSlice({
     },
 
     getDistrict(state, action: PayloadAction<number | string>) {
-      console.log(action.payload);
-      console.log(state.provice);
-
       state.loading = true;
     },
     getDistrictSuccess(state, action: PayloadAction<Provice>) {
@@ -111,6 +108,8 @@ export const selectWardOption = createSelector(selectWard, (Ward) =>
     label: current.name,
   }))
 );
+export const selectDirectory = (state: RootState) =>
+  `${state.directory.wardName} ,${state.directory.districtName}, ${state.directory.districtName}`;
 
 export const select = (state: DirectoryState) => state;
 export const unsafeSelector = createDraftSafeSelector(select, (state) => state.ward);

@@ -8,6 +8,7 @@ export interface CustomerInfo {
   proviceId: number | string;
   districtId: number | string;
   ward: number | string;
+  note?: string;
 }
 
 export interface FormCheckout {

@@ -23,8 +23,6 @@ const productApi = {
   },
 
   add(data: ProductDetails): Promise<ProductDetails> {
-    console.log(data);
-
     const url = '/products';
     return axiosClient.post(url, data);
   },
