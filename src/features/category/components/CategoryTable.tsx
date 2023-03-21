@@ -28,7 +28,7 @@ export interface ProductTableProps {
 
 function ProductTable({ productList, onEdit, onRemove }: ProductTableProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedStudent, setSelectedStudent] = React.useState<ProductDetails>();
+  const [selectedProduct, setSelectedProduct] = React.useState<ProductDetails>();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,7 +39,7 @@ function ProductTable({ productList, onEdit, onRemove }: ProductTableProps) {
   };
 
   const handleRemoveClick = (product: ProductDetails) => {
-    setSelectedStudent(product);
+    setSelectedProduct(product);
     handleClickOpen();
   };
   const handleRemoveConfirm = (product: ProductDetails) => {
@@ -69,10 +69,7 @@ function ProductTable({ productList, onEdit, onRemove }: ProductTableProps) {
           <TableBody>
             {productList.map((product, idx) => (
               <TableRow key={product.id}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                >
+                <TableCell component="th" scope="row">
                   {product.id}
                 </TableCell>
                 <TableCell align="left">{product.name}</TableCell>
@@ -111,19 +108,15 @@ function ProductTable({ productList, onEdit, onRemove }: ProductTableProps) {
         <DialogTitle id="alert-dialog-title">{'Comfirm remove product?'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure to remove this product- {selectedStudent?.name}. This action can't be undo
+            Are you sure to remove this product- {selectedProduct?.name}. This action can't be undo
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            onClick={handleClose}
-            variant="outlined"
-            color="primary"
-          >
+          <Button onClick={handleClose} variant="outlined" color="primary">
             Cancel
           </Button>
           <Button
-            onClick={() => handleRemoveConfirm(selectedStudent as ProductDetails)}
+            onClick={() => handleRemoveConfirm(selectedProduct as ProductDetails)}
             variant="contained"
             color="secondary"
             autoFocus

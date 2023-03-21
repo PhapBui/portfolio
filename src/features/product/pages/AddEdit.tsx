@@ -4,17 +4,22 @@ import productApi from 'api/productApi';
 import { FormAddEditProduct } from 'components/forms/formGroup';
 import { ProductDetails } from 'models/product';
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { createSlug } from 'utils/slug';
 
 export default function AddEditPage() {
-  const { productId } = useParams<{ productId: string }>();
-  const isEdit = Boolean(productId);
+  const [product, setProduct] = useState<ProductDetails>();
 
+  const mountedRef = useRef(true);
+
+  const { productId } = useParams<{ productId: string }>();
+
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const [product, setProduct] = useState<ProductDetails>();
-  const mountedRef = useRef(true);
+  const isAddPage = location.pathname === '/product/add';
+  const isEdit = Boolean(productId);
 
   const fetchProduct = useCallback(
     async (productId: number | string) => {
@@ -24,36 +29,41 @@ export default function AddEditPage() {
         if (!mountedRef.current) return null;
         setProduct(response);
       } catch (error) {
-        console.log('Failed to fetch student details: ', error);
+        console.log('Failed to fetch product details: ', error);
       }
     },
     [mountedRef]
   );
 
   useEffect(() => {
-    if (!productId) {
+    if (!productId && !isAddPage) {
       return navigate('/admin/product');
     }
-
-    fetchProduct(productId);
+    if (productId) fetchProduct(productId);
     return () => {
       mountedRef.current = false;
     };
-  }, [productId, navigate, fetchProduct]);
+  }, [productId, navigate, fetchProduct, isAddPage]);
 
-  const handleStudentFormSubmit = async (formValue: ProductDetails) => {
+  const handleProductFormSubmit = async (formValue: ProductDetails) => {
     const newData = formValue;
     newData.currentPrice = (newData.price * (100 - newData.discount)) / 100;
     newData.slug = createSlug(newData.name, newData.id);
-    if (isEdit) {
-      newData.updatedAt = new Date().getTime();
-      await productApi.update(newData);
-    } else {
-      newData.createdAt = new Date().getTime();
-      newData.updatedAt = new Date().getTime();
-      await productApi.add(newData);
+    try {
+      if (isEdit) {
+        newData.updatedAt = new Date().getTime();
+        await productApi.update(newData);
+        toast.success('Update product successfully!');
+      } else {
+        newData.createdAt = new Date().getTime();
+        newData.updatedAt = new Date().getTime();
+        await productApi.add(newData);
+        toast.success('Add new product successfully!');
+      }
+    } catch (error) {
+      toast.error('Cannot excuted this action pls try again!');
     }
-    // throw new Error('Loi roi');
+
     await navigate('/admin/product');
   };
 
@@ -91,7 +101,7 @@ export default function AddEditPage() {
         <Box>
           <FormAddEditProduct
             initialFormAddEditProductValue={initialValue}
-            onSubmit={handleStudentFormSubmit}
+            onSubmit={handleProductFormSubmit}
           />
         </Box>
       )}

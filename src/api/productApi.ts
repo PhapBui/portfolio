@@ -28,8 +28,6 @@ const productApi = {
   },
 
   update(data: Partial<ProductDetails>): Promise<ProductDetails> {
-    console.log('update data: ', data);
-
     const url = `/products/${data.id}`;
     return axiosClient.put(url, data);
   },

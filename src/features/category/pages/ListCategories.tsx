@@ -1,4 +1,4 @@
-// import studentApi from 'api/studentApi';
+// import productApi from 'api/productApi';
 import {
   Box,
   Button,
@@ -27,7 +27,7 @@ export interface CategoryTableProps {
 
 function ListCategoryPage({ categoryList, onEdit, onRemove }: CategoryTableProps) {
   const [open, setOpen] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState<CategoryDetails>();
+  const [selectedProduct, setSelectedProduct] = useState<CategoryDetails>();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,7 +38,7 @@ function ListCategoryPage({ categoryList, onEdit, onRemove }: CategoryTableProps
   };
 
   const handleRemoveClick = (category: CategoryDetails) => {
-    setSelectedStudent(category);
+    setSelectedProduct(category);
     handleClickOpen();
   };
   const handleRemoveConfirm = (category: CategoryDetails) => {
@@ -68,10 +68,7 @@ function ListCategoryPage({ categoryList, onEdit, onRemove }: CategoryTableProps
             <TableBody>
               {categoryList.map((category, idx) => (
                 <TableRow key={category.categoryId}>
-                  <TableCell
-                    component="th"
-                    scope="row"
-                  >
+                  <TableCell component="th" scope="row">
                     {category.categoryId}
                   </TableCell>
                   <TableCell align="left">{category.name}</TableCell>
@@ -110,20 +107,16 @@ function ListCategoryPage({ categoryList, onEdit, onRemove }: CategoryTableProps
           <DialogTitle id="alert-dialog-title">{'Comfirm remove category?'}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure to remove this category- {selectedStudent?.name}. This action can't be
+              Are you sure to remove this category- {selectedProduct?.name}. This action can't be
               undo
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button
-              onClick={handleClose}
-              variant="outlined"
-              color="primary"
-            >
+            <Button onClick={handleClose} variant="outlined" color="primary">
               Cancel
             </Button>
             <Button
-              onClick={() => handleRemoveConfirm(selectedStudent as CategoryDetails)}
+              onClick={() => handleRemoveConfirm(selectedProduct as CategoryDetails)}
               variant="contained"
               color="secondary"
               autoFocus

@@ -28,7 +28,7 @@ function ProductForm({ initialValue, onSubmit }: ProductFormProps) {
     try {
       await onSubmit?.(formValue);
     } catch (error: any) {
-      console.log('Failed to add/update Student: ', error);
+      console.log('Failed to add/update Product: ', error);
       setError(error.message);
     }
   };

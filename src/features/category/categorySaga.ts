@@ -9,7 +9,7 @@ function* fetchAllCategory() {
 
     yield put(categoryActions.fetchAllCategorySuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(categoryActions.fetchCategoryListFailed());
   }
 }

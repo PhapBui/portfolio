@@ -9,7 +9,7 @@ function* getAllProvice() {
     const res: Provice[] = yield call(directoryApi.getAllProvice);
     yield put(directoryActions.getProviceSuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(directoryActions.getDirectoryFailed());
   }
 }
@@ -19,7 +19,7 @@ function* getDistrictByProviceId(action: PayloadAction<number | string>) {
 
     yield put(directoryActions.getDistrictSuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(directoryActions.getDirectoryFailed());
   }
 }
@@ -28,7 +28,7 @@ function* getWardByDistrictId(action: PayloadAction<number | string>) {
     const res: District = yield call(directoryApi.getWardsByDistrictId, action.payload);
     yield put(directoryActions.getWardSuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(directoryActions.getDirectoryFailed());
   }
 }

@@ -3,7 +3,7 @@ import { Paths } from 'models';
 export const pathConfig: Paths = {
   root: '/',
   counter: '/counter',
-  product: '/product/*',
+  product: '/product/',
   category: '/category/*',
   about: '/about',
   checkout: '/checkout',

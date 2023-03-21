@@ -11,7 +11,7 @@ function* fetchAllProduct() {
 
     yield put(productActions.fetchAllProductSuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(productActions.fetchProductListFailed());
   }
 }
@@ -21,7 +21,7 @@ function* fetchHotDeal(action: PayloadAction<ListParams>) {
 
     yield put(productActions.fetchHotDealSuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(productActions.fetchProductListFailed());
   }
 }
@@ -31,7 +31,7 @@ function* fetchGalley(action: PayloadAction<ListParams>) {
 
     yield put(productActions.fetchGalleySuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(productActions.fetchProductListFailed());
   }
 }
@@ -41,7 +41,7 @@ function* fetchSingleProduct(action: PayloadAction<string | number>) {
 
     yield put(productActions.fetchSingleProductSuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(productActions.fetchProductListFailed());
   }
 }
@@ -51,7 +51,7 @@ function* searchProduct(action: PayloadAction<string>) {
 
     yield put(productActions.searchProductByNameSuccess(res));
   } catch (error) {
-    console.log('Failed to fetchStudentList: ', error);
+    console.log('Failed to fetchProductList: ', error);
     yield put(productActions.fetchProductListFailed());
   }
 }

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-// import studentApi from 'api/studentApi';
+// import productApi from 'api/productApi';
 import { Box, Button, LinearProgress, Pagination, Stack, Typography } from '@mui/material';
 import productApi from 'api/productApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -9,6 +9,7 @@ import { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductTable from '../components/ProductTable';
 import { loadingProduct, productFilter, selectHotdeal, selectPagination } from '../productSlice';
+import { toast } from 'react-toastify';
 
 function ListPage() {
   const [page, setPage] = useState(1);
@@ -35,7 +36,10 @@ function ListPage() {
       await productApi.remove(product.id);
       const newFilter = { ...filter };
       dispatch(productActions.setFilter(newFilter));
-    } catch (error) {}
+      toast.success('Remove product successfully!');
+    } catch (error) {
+      toast.error('Cannot excuted this action pls try again!');
+    }
   };
 
   const handleEditProduct = (product: ProductDetails) => {
@@ -75,12 +79,7 @@ function ListPage() {
 
       {/* Pagination */}
       <Box mt={2}>
-        <Pagination
-          color="primary"
-          count={pagination.count}
-          page={page}
-          onChange={handleChange}
-        />
+        <Pagination color="primary" count={pagination.count} page={page} onChange={handleChange} />
       </Box>
     </Box>
   );
