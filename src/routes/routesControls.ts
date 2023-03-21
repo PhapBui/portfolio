@@ -28,6 +28,7 @@ const publicRoutes: RoutesConfig[] = [
     layout: NoSideBarLayout,
     child: [
       { path: 'add', element: AddEditPage },
+      { path: 'edit', element: AddEditPage },
       { path: 'edit/:productId', element: AddEditPage },
       { path: ':productId', element: SingleProduct },
     ],

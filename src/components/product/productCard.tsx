@@ -2,6 +2,7 @@ import { Box, Card, styled, Typography } from '@mui/material';
 import { ProductDetails } from 'models/product';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { createSlug } from 'utils/slug';
 import { currency } from 'utils/currency';
 import { ProductDiscoutBadge, ProductName, ProductPrice } from './productCardStyle';
 
@@ -20,7 +21,7 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = ({ product }: Pro
         position: 'relative',
       }}
     >
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/product/${createSlug(product.name, product.id)}`}>
         <Box
           component="img"
           src={product.thumbnailUrl}

@@ -16,3 +16,10 @@ export function createSlug(name: string, id: string | number): string {
 
   return `${slug}-p${id}`;
 }
+
+export function getProductIdFromPath(path: string): string {
+  if (!path) return '';
+  const pId = path.lastIndexOf('p');
+  const id = path.substring(pId + 1);
+  return id;
+}

@@ -1,7 +1,7 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 
-import { logo, gitIcon, linkedinIcon, mailIcon, phoneIcon } from 'assets/images';
+import { gitIcon, linkedinIcon, mailIcon, NikeLogo, phoneIcon } from 'assets/images';
 import FooterItem from './Item';
 
 export interface FooterProps {}
@@ -42,13 +42,13 @@ const data = [
       {
         name: 'Portfolio',
         id: 1,
-        avatar: logo,
-        url: 'https://www.linkedin.com/in/b%C3%B9i-ph%C3%A1p-8a38a8149/?original_referer=',
+        avatar: NikeLogo,
+        url: 'http://localhost:3000/admin',
       },
       {
-        name: 'Shop',
+        name: 'Shoes Store',
         id: 1,
-        avatar: logo,
+        avatar: NikeLogo,
         url: 'https://portfolio-phapbui.vercel.app/',
       },
     ],
@@ -67,10 +67,7 @@ function Footer(props: FooterProps) {
       borderRadius={2}
     >
       <Container fixed>
-        <Stack
-          direction="row"
-          gap={2}
-        >
+        <Stack direction="row" gap={2}>
           {data.map((a, b) => (
             <Box
               sx={{
@@ -89,20 +86,14 @@ function Footer(props: FooterProps) {
               }}
               key={b}
             >
-              <Typography
-                component="h3"
-                variant="h5"
-              >
+              <Typography component="h3" variant="h5">
                 {a.title}
               </Typography>
               <FooterItem items={a.items} />
             </Box>
           ))}
         </Stack>
-        <Typography
-          textAlign={'center'}
-          variant="subtitle1"
-        >
+        <Typography textAlign={'center'} variant="subtitle1">
           Copy Right © {new Date().getFullYear()}
         </Typography>
       </Container>

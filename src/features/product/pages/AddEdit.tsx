@@ -3,9 +3,9 @@ import { Box, Typography } from '@mui/material';
 import productApi from 'api/productApi';
 import { FormAddEditProduct } from 'components/forms/formGroup';
 import { ProductDetails } from 'models/product';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { createSlug } from 'utils/createSlug';
+import { createSlug } from 'utils/slug';
 
 export default function AddEditPage() {
   const { productId } = useParams<{ productId: string }>();
@@ -14,18 +14,32 @@ export default function AddEditPage() {
   const navigate = useNavigate();
 
   const [product, setProduct] = useState<ProductDetails>();
+  const mountedRef = useRef(true);
 
-  useEffect(() => {
-    if (!productId) return;
-    (async () => {
+  const fetchProduct = useCallback(
+    async (productId: number | string) => {
+      if (!productId) return;
       try {
         const response: ProductDetails = await productApi.getById(productId);
+        if (!mountedRef.current) return null;
         setProduct(response);
       } catch (error) {
         console.log('Failed to fetch student details: ', error);
       }
-    })();
-  }, [productId]);
+    },
+    [mountedRef]
+  );
+
+  useEffect(() => {
+    if (!productId) {
+      return navigate('/admin/product');
+    }
+
+    fetchProduct(productId);
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [productId, navigate, fetchProduct]);
 
   const handleStudentFormSubmit = async (formValue: ProductDetails) => {
     const newData = formValue;
@@ -60,15 +74,11 @@ export default function AddEditPage() {
 
     ...product,
   };
-
   return (
     <>
       <Box>
         <Link to="/admin/product">
-          <Typography
-            variant="caption"
-            style={{ display: 'flex', alignItems: 'center' }}
-          >
+          <Typography variant="caption" style={{ display: 'flex', alignItems: 'center' }}>
             <ChevronLeft>Back to ProductDetails List</ChevronLeft>
           </Typography>
         </Link>

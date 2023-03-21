@@ -1,26 +1,25 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { cartActions } from 'features/cart/cartSlice';
 import AddToCart from 'features/cart/components/AddToCart';
 import { productActions } from 'features/product/productSlice';
-import React, { memo, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { ProductDetails } from 'models/product';
+import React, { memo, useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getProductIdFromPath } from 'utils/slug';
 import ProductInfo from '../components/ProductInfo';
 import ProductThumbnail from '../components/ProductThumbnail';
 import { selectProduct } from '../productSlice';
-import { ProductDetails } from 'models/product';
-import { cartActions } from 'features/cart/cartSlice';
 
 interface SingleProductProps {}
 
 const SingleProduct: React.FunctionComponent<SingleProductProps> = (props) => {
-  const [productId, setProductId] = useState<string>();
-  const params = useParams();
-  const dispatch = useAppDispatch();
+  const location = useLocation();
 
-  useEffect(() => {
-    setProductId(params.productId);
-  }, [params.productId]);
+  const productId = useMemo(() => getProductIdFromPath(location.pathname), [location]);
+
+  const dispatch = useAppDispatch();
 
   const product = useAppSelector(selectProduct);
 

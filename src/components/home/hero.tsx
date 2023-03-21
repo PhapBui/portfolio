@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Slick from 'components/common/Carousel/Slick';
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 export interface HeroBannerProps {}
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -20,22 +21,39 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
 };
+
+const slickItems = [
+  {
+    id: 1,
+    imageUrl:
+      'https://res.cloudinary.com/dsjbcv5xe/image/upload/v1679300966/nike-dunk-black-white-banner-censorvn-1400x630_zhioet.webp',
+    path: '/admin',
+  },
+  {
+    id: 2,
+    imageUrl:
+      'https://res.cloudinary.com/dsjbcv5xe/image/upload/v1679301277/air-jordan-1-mid-se-gs-diamond-1400x630_oikmuz.webp',
+    path: '/admin',
+  },
+  {
+    id: 3,
+    imageUrl:
+      'https://res.cloudinary.com/dsjbcv5xe/image/upload/v1679301274/air-jordan-4-military-black-banner-pc-1400x630_hpiwag.jpg',
+    path: '/admin',
+  },
+];
+
 function HeroBanner(props: HeroBannerProps) {
   return (
     <Box component="section">
-      <Stack
-        direction="row"
-        columnGap={2}
-      >
+      <Stack direction="row" columnGap={2}>
         <Item sx={{ width: { lg: '75%', xs: '100%' }, height: { xl: 280, lg: 240 } }}>
           <Slick setting={settings}>
-            <div>
-              <img
-                src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/67/27/b0/3c59c3f7e4b1f22fc39e706a47c80af7.jpg.webp"
-                alt=""
-              />
-            </div>
-            <div>2</div>
+            {slickItems.map((item) => (
+              <Link to={item.path} key={item.id}>
+                <Box component="img" src={item.imageUrl} alt="" />
+              </Link>
+            ))}
           </Slick>
         </Item>
 
@@ -47,12 +65,14 @@ function HeroBanner(props: HeroBannerProps) {
           }}
         >
           <Box sx={{ width: '100%', height: '100%' }}>
-            <img
-              src="https://salt.tikicdn.com/cache/w750/ts/tikimsp/07/ac/7e/4fbe2badc757e4e494c85e3f5bda1a95.jpg.webp"
-              alt=""
-              width={'100%'}
-              height={'100%'}
-            />
+            <Link to="/product/air-jordan-xxxvii-low-pf-p72">
+              <img
+                src="https://res.cloudinary.com/dsjbcv5xe/image/upload/v1678694725/13_emxyu9.webp"
+                alt=""
+                width={'100%'}
+                height={'100%'}
+              />
+            </Link>
           </Box>
         </Item>
       </Stack>

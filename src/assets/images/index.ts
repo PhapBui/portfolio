@@ -9,5 +9,6 @@ export const mailIcon = require('./social-icons/mail.svg').default;
 export const phoneIcon = require('./social-icons/phone-solid.svg').default;
 
 export const logo = require('./logo/logo.png');
+export const NikeLogo = require('./logo/nike.png');
 
 export const emptyCart = require('./empty/empty_cart.png');

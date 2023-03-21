@@ -29,14 +29,14 @@ function FormCheckout({ onSubmit, initCustomer }: FormCheckoutProps) {
   }, [dispatch]);
 
   const schema = yup.object().shape({
-    // customer_name: yup.string().min(3, 'Please enter your name').required('Please enter your name'),
-    // email: yup.string().email('Must be a valid email').required('Please enter your email'),
-    // phonenumber: yup
-    //   .string()
-    //   .matches(phoneRegExp, 'Phone number is not valid')
-    //   .min(3, 'Please')
-    //   .required('Please enter your phonenumber'),
-    // address: yup.string().min(8, 'Must be a valid address').required('Please enter your address'),
+    customer_name: yup.string().min(3, 'Please enter your name').required('Please enter your name'),
+    email: yup.string().email('Must be a valid email').required('Please enter your email'),
+    phonenumber: yup
+      .string()
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .min(3, 'Please')
+      .required('Please enter your phonenumber'),
+    address: yup.string().min(8, 'Must be a valid address').required('Please enter your address'),
   });
 
   const {

@@ -10,7 +10,6 @@ import { cartActions, selectCartItems } from 'features/cart/cartSlice';
 import { selectDirectory } from 'features/directory/directorySlice';
 import { CustomerInfo } from 'models/email';
 import { SendEmail } from 'utils/email';
-import emailApi from './../../api/emailApi';
 export interface CheckoutPageProps {}
 
 function CheckoutPage(props: CheckoutPageProps) {
@@ -41,11 +40,10 @@ function CheckoutPage(props: CheckoutPageProps) {
       user_email: data.email,
       reply_to: 'bvphap.tk@gmail.com',
     };
-    const a = await emailApi.sendEmail(templateParams);
-    console.log(a);
+    await sendmail(templateParams);
 
-    // dispatch(cartActions.emptyCart());
-    // navigate('/');
+    dispatch(cartActions.emptyCart());
+    navigate('/');
   };
 
   const sendmail = async (content: {}) => {
