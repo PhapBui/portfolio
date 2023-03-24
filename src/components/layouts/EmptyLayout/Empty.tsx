@@ -5,12 +5,5 @@ import * as React from 'react';
 export interface EmptyLayoutProps {}
 
 export const EmptyLayout = React.memo(function EmptyLayout({ children }: LayoutProps) {
-  return (
-    <Box
-      component={'main'}
-      sx={{ minHeight: '100vh' }}
-    >
-      {children}
-    </Box>
-  );
+  return <Box sx={{ minHeight: '100vh' }}>{children}</Box>;
 });

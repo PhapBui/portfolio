@@ -43,7 +43,7 @@ const publicRoutes: RoutesConfig[] = [
       // { path: ':categoryId', element: SingleProduct },
     ],
   },
-  { path: pathConfig.about, element: AboutPage, layout: NoSideBarLayout },
+  { path: pathConfig.about, element: AboutPage, layout: EmptyLayout },
   { path: pathConfig.cart, element: CartPage, layout: NoSideBarLayout },
   {
     path: pathConfig.admin,

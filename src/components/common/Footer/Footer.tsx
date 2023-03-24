@@ -40,10 +40,10 @@ const data = [
     title: 'Project',
     items: [
       {
-        name: 'Portfolio',
+        name: 'CV',
         id: 1,
         avatar: NikeLogo,
-        url: 'http://localhost:3000/admin',
+        url: 'https://drive.google.com/drive/folders/1Mt1dW3v7gG1uiaRrCM6srlR_FbV-Fo1_',
       },
       {
         name: 'Shoes Store',
